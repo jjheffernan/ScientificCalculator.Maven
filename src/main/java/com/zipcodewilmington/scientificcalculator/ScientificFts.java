@@ -8,48 +8,50 @@ import static java.lang.System.exit;
 
 public class ScientificFts {
     static String powerOffPrompt = "Calculator powering off...";
-    Calculator calc = new Calculator();
-    int val = calc.add(15, 18);
+//    Calculator calc = new Calculator();
+//    int val = calc.add(15, 18);
 
     public static void main(String[] args) {
-        String input;
-        boolean activeCalc = true;
-        String d = "d";
-        String m = "m";
+//        String input;
+//        boolean activeCalc = true;
+//        String d = "d";
+//        String m = "m";
         String t = "t";
         String add = "+";
         String q = "q";
 
+
         ScientificFts tester = new ScientificFts();
         MainApplication mainApp = new MainApplication();
-        mainApp.displayMenu();
+//        mainApp.displayMenu();
 
 
 
-        while (activeCalc) {
-            input = tester.userInput();
-
-            switch (input) {
-                case "d":
-                    System.out.println("You entered " + d + "\n");
-                    tester.switchDisplayMode();
-                    break;
-                case "m":
-                    System.out.println("You entered " + m + "\n");
-                    break;
-                case "+":
-                    System.out.println("Addition happening");
-                case "q":
-                    System.out.println(powerOffPrompt);
-                    activeCalc = false;
-                    exit(5);
-                default:
-                    throw new IllegalStateException("Unexpected value: " + input);
-            }
-        }
+//        while (activeCalc) {
+//            input = mainApp.userInput();
+//
+//            switch (input) {
+//                case "d":
+//                    System.out.println("You entered " + d + "\n");
+//                    tester.switchDisplayMode();
+//                    break;
+//                case "m":
+//                    System.out.println("You entered " + m + "\n");
+//                    break;
+//                case "+":
+//                    System.out.println("Addition happening");
+//                case "q":
+//                    System.out.println(powerOffPrompt);
+//                    activeCalc = false;
+//                    exit(5);
+//                default:
+//                    throw new IllegalStateException("Unexpected value: " + input);
+//            }
+//        }
     }
 
 
+/*
     public String userInput() {
         String inputPrompt = "Enter letter to select feature: ";
         System.out.print(inputPrompt);
@@ -58,6 +60,7 @@ public class ScientificFts {
 
         return nextMode;
     }
+*/
 
     /*DISPLAY MODES*/
     public String binaryVal(int n) {
@@ -81,8 +84,8 @@ public class ScientificFts {
     public void switchDisplayMode() {
         int testVal = 33;
         int count = 0;
-        String arr[] = {binaryVal(val), octalVal(val),
-                decimalVal(val), hexadecimalVal(val)};
+        String arr[] = {binaryVal(testVal), octalVal(testVal),
+                decimalVal(testVal), hexadecimalVal(testVal)};
         String[] modeTitles = {"binary", "octal", "decimal", "hexadecimal"};
 
         String displayModesHeader = "display modes\n";
@@ -94,7 +97,8 @@ public class ScientificFts {
 
         boolean activeDisplayMode = true;
         while (activeDisplayMode) {
-            String input = userInput();
+            MainApplication mainApp = new MainApplication();
+            String input = mainApp.userInput();
             switch (input) {
                 case "nm":
                     System.out.println(testVal + " to " + modeTitles[count] +
@@ -111,7 +115,7 @@ public class ScientificFts {
                             "(binary, octal, decimal, hexadecimal)\n");
                     System.out.println(displayModeChoicePrompt);
 
-                    switchDisplayMode(userInput());
+                    switchDisplayMode();
                     break;
                 case "q":
                     System.out.println(powerOffPrompt);
