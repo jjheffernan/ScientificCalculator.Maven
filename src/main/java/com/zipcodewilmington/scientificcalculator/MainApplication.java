@@ -16,17 +16,19 @@ public class MainApplication {
     public static void main(String[] args) {
         String powerOffPrompt = "Calculator powering off...";
         String inputPrompt = "Enter letter to select feature: ";
-        String addPrompt = "Add two numbers:\n";
-        String subPrompt = "Subtract two numbers\n";
+        // String addPrompt = "Add two numbers:\n";
+        // String subPrompt = "Subtract two numbers\n";
 
 
         MainApplication mainApp = new MainApplication();
         ScientificFts tester = new ScientificFts();
         Calculator coreCalc = new Calculator();
+        Console userInput = new Console();
 
         String input;
+        String prompt = null;
         boolean activeCalc = true;
-        String doub = "d";
+        String d = "d";
         String m = "m";
         String t = "t";
         String add = "+";
@@ -49,43 +51,56 @@ public class MainApplication {
 */
 
         while (activeCalc) {
-            input = mainApp.userInput();
+            input = userInput.getStringInput("Enter a letter to select features");
 
             switch (input) {
+                // case one: display mode
+
                 case "d":
                     System.out.print(inputPrompt);
-                    System.out.println("You entered " + doub + "\n");
+                    System.out.println("You entered " + d + "\n");
                     tester.switchDisplayMode();
                     break;
+                // case two: memory mode
                 case "m":
                     System.out.println("You entered " + m + "\n");
                     break;
-                case "+":
-                    System.out.println(addPrompt);
-                    float addX = Float.parseFloat(mainApp.userInput());
-                    float addY = Float.parseFloat(mainApp.userInput());
+                case "t":
+                    System.out.println("You entered " + t + "\n");
+
+                    break;
+                // case three:
+                case "a":
+                    // System.out.println(addPrompt);
+                    double addX =userInput.getDoubleInput("enter a number to add");
+                    double addY =userInput.getDoubleInput("another one");
                     System.out.println(coreCalc.add(addX, addY));
                     break;
+                // case four:
                 case "-":
-                    System.out.println(subPrompt);
-                    double subX = Double.parseDouble(mainApp.userInput());
-                    double subY = Double.parseDouble(mainApp.userInput());
+                    // System.out.println(subPrompt);
+                    double subX = userInput.getDoubleInput("");
+                    double subY = userInput.getDoubleInput("");
                     System.out.printf("subtracting %.4f from %.4f gives " +
                             coreCalc.subtract(subX,subY),subX,subY);
                     break;
+                // case five:
                 case "*":
-                    int multX = Integer.parseInt(mainApp.userInput());
-                    int multy = Integer.parseInt(mainApp.userInput());
+                    int multX = userInput.getIntegerInput("");
+                    int multy = userInput.getIntegerInput("");
                     System.out.println(coreCalc.multiply(multX,multy));
+                //case six:
                 case "/":
-                    double divX = Double.parseDouble(mainApp.userInput());
-                    double divY = Double.parseDouble(mainApp.userInput());
+                    double divX = userInput.getDoubleInput("");
+                    double divY = userInput.getDoubleInput("");
                     String res = String.valueOf(coreCalc.divide(divX,divY));
                     System.out.println(res);
+                //case seven:
                 case "q":
                     System.out.println(powerOffPrompt);
                     activeCalc = false;
                     exit(5);
+                //default case:
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
             }
@@ -93,14 +108,14 @@ public class MainApplication {
 
     }
 
-    public String userInput() {
+    /* public String userInput() {
 //        String inputPrompt = "Enter letter to select feature: ";
 //        System.out.print(inputPrompt);
         Scanner sc = new Scanner(System.in);
         String nextMode = sc.nextLine();
 
         return nextMode;
-    }
+    } */
 
     public void displayMenu() {
         String header = "execute scientific features\n";

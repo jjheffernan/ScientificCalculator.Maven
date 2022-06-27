@@ -86,8 +86,12 @@ public class ScientificFts {
 
 
     public void switchDisplayMode() {
-        int testVal = 33;
+        Console userInput = new Console();
+        MainApplication mainApp = new MainApplication();
+        int testVal = userInput.getIntegerInput("");
         int count = 0;
+
+
         String arr[] = {binaryVal(testVal), octalVal(testVal),
                 decimalVal(testVal), hexadecimalVal(testVal)};
         String[] modeTitles = {"binary", "octal", "decimal", "hexadecimal"};
@@ -101,8 +105,8 @@ public class ScientificFts {
 
         boolean activeDisplayMode = true;
         while (activeDisplayMode) {
-            MainApplication mainApp = new MainApplication();
-            String input = mainApp.userInput();
+
+            String input = userInput.getStringInput("enter a string: ");
             switch (input) {
                 case "nm":
                     System.out.println(testVal + " to " + modeTitles[count] +
