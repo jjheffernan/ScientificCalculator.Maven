@@ -11,7 +11,7 @@ public class Calculator {
     // MainApplication activeCalc = new MainApplication();
 
     // Input section
-    public void Arithmetic(String[] args) {
+    public void Arithmetic() {
         switch (choiceString) {
             // Case 1
             case "+" -> {
@@ -91,7 +91,7 @@ public class Calculator {
     }
 
     public double divide(double x, double y) {
-        return x / y;
+        return (x / y);
     }
 
     public double sqr(double x) {
