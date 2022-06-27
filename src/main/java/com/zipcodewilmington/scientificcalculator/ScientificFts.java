@@ -2,12 +2,14 @@ package com.zipcodewilmington.scientificcalculator;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
-
 import static java.lang.System.exit;
-import static java.lang.System.in;
+
+
 
 public class ScientificFts {
     static String powerOffPrompt = "Calculator powering off...";
+    Calculator calc = new Calculator();
+    int val = calc.add(15, 18);
 
     public static void main(String[] args) {
         String input;
@@ -15,13 +17,13 @@ public class ScientificFts {
         String d = "d";
         String m = "m";
         String t = "t";
+        String add = "+";
         String q = "q";
 
         ScientificFts tester = new ScientificFts();
         MainApplication mainApp = new MainApplication();
         mainApp.displayMenu();
 
-        Calculator calc = new Calculator();
 
 
         while (activeCalc) {
@@ -35,6 +37,8 @@ public class ScientificFts {
                 case "m":
                     System.out.println("You entered " + m + "\n");
                     break;
+                case "+":
+                    System.out.println("Addition happening");
                 case "q":
                     System.out.println(powerOffPrompt);
                     activeCalc = false;
@@ -77,8 +81,8 @@ public class ScientificFts {
     public void switchDisplayMode() {
         int testVal = 33;
         int count = 0;
-        String arr[] = {binaryVal(testVal), octalVal(testVal),
-                decimalVal(testVal), hexadecimalVal(testVal)};
+        String arr[] = {binaryVal(val), octalVal(val),
+                decimalVal(val), hexadecimalVal(val)};
         String[] modeTitles = {"binary", "octal", "decimal", "hexadecimal"};
 
         String displayModesHeader = "display modes\n";
