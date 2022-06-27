@@ -9,7 +9,12 @@ import static java.lang.System.exit;
  */
 public class MainApplication {
     static String powerOffPrompt = "Calculator powering off...";
-
+    public class varSpace {
+        public static double num1;
+        public static double num2;
+        public static double mem;
+        public static String userChoice;
+    }
 
     boolean activeCalc = true;
 
@@ -28,7 +33,7 @@ public class MainApplication {
         String input;
         String prompt = null;
         boolean activeCalc = true;
-        String d = "d";
+        // String d = "d";
         String m = "m";
         String t = "t";
         String add = "+";
@@ -55,15 +60,20 @@ public class MainApplication {
 
             switch (input) {
                 // case one: display mode
-
                 case "d":
                     System.out.print(inputPrompt);
-                    System.out.println("You entered " + d + "\n");
+                    System.out.println("You entered d");
                     tester.switchDisplayMode();
                     break;
+                // enter number case
+                case "e":
+                    varSpace.num1 = userInput.getDoubleInput("Enter a number for display\n");
+                    System.out.println(varSpace.num1);
                 // case two: memory mode
+                    break;
                 case "m":
                     System.out.println("You entered " + m + "\n");
+
                     break;
                 case "t":
                     System.out.println("You entered " + t + "\n");
@@ -72,29 +82,32 @@ public class MainApplication {
                 // case three:
                 case "a":
                     // System.out.println(addPrompt);
-                    double addX =userInput.getDoubleInput("enter a number to add");
-                    double addY =userInput.getDoubleInput("another one");
-                    System.out.println(coreCalc.add(addX, addY));
+                    // double addX =userInput.getDoubleInput("enter a number to add: ");
+                    // double addY =userInput.getDoubleInput("another one: ");
+                    // System.out.println(coreCalc.add(addX, addY));
+                    coreCalc.Arithmetic();
                     break;
                 // case four:
                 case "-":
                     // System.out.println(subPrompt);
                     double subX = userInput.getDoubleInput("");
                     double subY = userInput.getDoubleInput("");
-                    System.out.printf("subtracting %.4f from %.4f gives " +
-                            coreCalc.subtract(subX,subY),subX,subY);
+                    System.out.printf("subtracting %.4f from %.4f gives \n" +
+                    coreCalc.subtract(subX,subY),subX,subY);
                     break;
                 // case five:
                 case "*":
                     int multX = userInput.getIntegerInput("");
                     int multy = userInput.getIntegerInput("");
                     System.out.println(coreCalc.multiply(multX,multy));
+                    break;
                 //case six:
                 case "/":
                     double divX = userInput.getDoubleInput("");
                     double divY = userInput.getDoubleInput("");
                     String res = String.valueOf(coreCalc.divide(divX,divY));
                     System.out.println(res);
+                    break;
                 //case seven:
                 case "q":
                     System.out.println(powerOffPrompt);
@@ -128,7 +141,7 @@ public class MainApplication {
         String addition = "+: addition calculation\n";
         String subtraction = "-: subtraction calculation\n";
         String multiplication = "*: multiplication calculation\n";
-        String division = "/: division calculation";
+        String division = "/: division calculation\n";
         String quit = "q: quit";
 
         String menu = (header.toUpperCase() + separator +
