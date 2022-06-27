@@ -1,5 +1,7 @@
 package com.zipcodewilmington.scientificcalculator;
 
+import com.sun.tools.javac.Main;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.System.exit;
@@ -7,7 +9,7 @@ import static java.lang.System.exit;
 
 
 public class ScientificFts {
-    static String powerOffPrompt = "Calculator powering off...";
+//    static String powerOffPrompt = "Calculator powering off...";
 //    Calculator calc = new Calculator();
 //    int val = calc.add(15, 18);
 
@@ -16,13 +18,15 @@ public class ScientificFts {
 //        boolean activeCalc = true;
 //        String d = "d";
 //        String m = "m";
-        String t = "t";
-        String add = "+";
-        String q = "q";
+//        String t = "t";
+//        String add = "+";
+//        String q = "q";
 
 
-        ScientificFts tester = new ScientificFts();
-        MainApplication mainApp = new MainApplication();
+
+
+//        ScientificFts tester = new ScientificFts();
+//        MainApplication mainApp = new MainApplication();
 //        mainApp.displayMenu();
 
 
@@ -118,7 +122,9 @@ public class ScientificFts {
                     switchDisplayMode();
                     break;
                 case "q":
-                    System.out.println(powerOffPrompt);
+                    MainApplication mainCalc = new MainApplication();
+
+                    System.out.println(mainCalc.powerOffPrompt);
                     exit(5);
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
@@ -153,7 +159,9 @@ public class ScientificFts {
                     switchDisplayMode();
                     break;
                 case "q":
-                    System.out.println(powerOffPrompt);
+                    MainApplication mainCalc = new MainApplication();
+
+                    System.out.println(mainCalc.powerOffPrompt);
                     exit(5);
                 default:
                     throw new IllegalStateException("Unexpected value: " + mode);
