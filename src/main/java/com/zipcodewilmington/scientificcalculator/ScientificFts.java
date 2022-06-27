@@ -21,6 +21,8 @@ public class ScientificFts {
         MainApplication mainApp = new MainApplication();
         mainApp.displayMenu();
 
+        Calculator calc = new Calculator();
+
 
         while (activeCalc) {
             input = tester.userInput();
@@ -57,19 +59,22 @@ public class ScientificFts {
     public String binaryVal(int n) {
         return (Integer.toBinaryString(n));
     }
+
     public String octalVal(int n) {
         return (Integer.toOctalString(n));
     }
+
     public String decimalVal(int n) {
-        DecimalFormat df = new DecimalFormat();
+        DecimalFormat df = new DecimalFormat("0.00");
         return (df.format(n));
     }
+
     public String hexadecimalVal(int n) {
         return (Integer.toHexString(n));
     }
 
-    public void switchDisplayMode() {
 
+    public void switchDisplayMode() {
         int testVal = 33;
         int count = 0;
         String arr[] = {binaryVal(testVal), octalVal(testVal),
@@ -92,23 +97,63 @@ public class ScientificFts {
                             " value = " + arr[count]);
                     count++;
 
-                    if(count == arr.length) {
+                    if (count == arr.length) {
                         count = 0;
                     }
                     break;
                 case "cm":
-                    System.out.println("choosing display mode...");
-                    activeDisplayMode = false;
+                    System.out.println("\nchoosing display mode...");
+                    String displayModeChoicePrompt = ("Choose display mode by typing:" +
+                            "(binary, octal, decimal, hexadecimal)\n");
+                    System.out.println(displayModeChoicePrompt);
+
+                    switchDisplayMode(userInput());
                     break;
-                case "q" :
+                case "q":
                     System.out.println(powerOffPrompt);
                     exit(5);
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
-                }
             }
         }
     }
+
+    public void switchDisplayMode(String mode) {
+        boolean choosingDisplayMode = true;
+        int testVal = 33;
+
+        while (choosingDisplayMode) {
+            switch (mode) {
+                case "binary":
+                    System.out.println("showing binary calculation");
+                    System.out.println(binaryVal(testVal));
+                    switchDisplayMode();
+                    break;
+                case "octal":
+                    System.out.println("showing octal calculation");
+                    System.out.println(octalVal(testVal));
+                    switchDisplayMode();
+                    break;
+                case "decimal" :
+                    System.out.println("showing decimal calculation");
+                    System.out.println(decimalVal(testVal));
+                    switchDisplayMode();
+                    break;
+                case "hexadecimal":
+                    System.out.println("showing hexadecimal calculation");
+                    System.out.println(hexadecimalVal(testVal));
+                    switchDisplayMode();
+                    break;
+                case "q":
+                    System.out.println(powerOffPrompt);
+                    exit(5);
+                default:
+                    throw new IllegalStateException("Unexpected value: " + mode);
+            }
+        }
+    }
+}
+
 
 
 
@@ -205,8 +250,7 @@ public class ScientificFts {
 */
 
 
-
-        //display mode methods
+//display mode methods
 /*
         while (choosingDisplayMode) {
             switch (mode) {
