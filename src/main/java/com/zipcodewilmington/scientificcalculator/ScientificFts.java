@@ -4,19 +4,22 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 public class ScientificFts {
+    static String powerOffPrompt = "Calculator powering off...";
 
     public static void main(String[] args) {
         String input;
         boolean activeCalc = true;
         String d = "d";
         String m = "m";
+        String t = "t";
         String q = "q";
 
-
         ScientificFts tester = new ScientificFts();
-        tester.displayMenu();
+        MainApplication mainApp = new MainApplication();
+        mainApp.displayMenu();
 
 
         while (activeCalc) {
@@ -25,62 +28,24 @@ public class ScientificFts {
             switch (input) {
                 case "d":
                     System.out.println("You entered " + d + "\n");
-                    tester.cycleDisplayMenu(33);
+                    tester.switchDisplayMode();
                     break;
                 case "m":
                     System.out.println("You entered " + m + "\n");
                     break;
                 case "q":
-                    System.out.println("Calculator powering off...");
+                    System.out.println(powerOffPrompt);
                     activeCalc = false;
                     exit(5);
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
             }
         }
-/*
-        if (tester.userInput().equals("d")) {
-            System.out.print("You selected " + d);
-        }
-        else if (tester.userInput().equals("m")) {
-            System.out.println("You selected " + m);
-        }
-*/
     }
-    /*        String input = tester.userInput();
 
-     */
-
-/*
-        switch (input) {
-            case "q":
-                System.out.println("quitting calculator");
-                break;
-            case "d":
-                tester.switchDisplayMode(33);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + input);
-        }
-    }
-*/
-
-    public void displayMenu() {
-        String header = "execute scientific features\n";
-        String separator = "************************************************\n";
-
-        String switchDisplay = "d: cycle display modes(binary, octal, decimal, hexadecimal)\n";
-        String storeValMemory = "m: store up to one numeric value in memory for recall later\n";
-        String trigFunctionality = "t: execute trigonometry functions\n";
-        String quit = "q: quit";
-
-        String menu = (header.toUpperCase() + separator +
-                switchDisplay + storeValMemory + trigFunctionality + quit);
-        System.out.println(menu);
-    }
 
     public String userInput() {
-        String inputPrompt = "Enter a letter to select feature: ";
+        String inputPrompt = "Enter letter to select feature: ";
         System.out.print(inputPrompt);
         Scanner sc = new Scanner(System.in);
         String nextMode = sc.nextLine();
@@ -88,6 +53,72 @@ public class ScientificFts {
         return nextMode;
     }
 
+    /*DISPLAY MODES*/
+    public String binaryVal(int n) {
+        return (Integer.toBinaryString(n));
+    }
+    public String octalVal(int n) {
+        return (Integer.toOctalString(n));
+    }
+    public String decimalVal(int n) {
+        DecimalFormat df = new DecimalFormat();
+        return (df.format(n));
+    }
+    public String hexadecimalVal(int n) {
+        return (Integer.toHexString(n));
+    }
+
+    public void switchDisplayMode() {
+
+        int testVal = 33;
+        int count = 0;
+        String arr[] = {binaryVal(testVal), octalVal(testVal),
+                decimalVal(testVal), hexadecimalVal(testVal)};
+        String[] modeTitles = {"binary", "octal", "decimal", "hexadecimal"};
+
+        String displayModesHeader = "display modes\n";
+        String modes = ("(" + modeTitles[0] + ", " + modeTitles[1] + ", " +
+                modeTitles[2] + ", " + modeTitles[3]);
+        String displayModesPrompt = ("\nnm: next mode\ncm: choose mode");
+        String displayModesMenu = (displayModesHeader.toUpperCase() + modes + displayModesPrompt);
+        System.out.println(displayModesMenu);
+
+        boolean activeDisplayMode = true;
+        while (activeDisplayMode) {
+            String input = userInput();
+            switch (input) {
+                case "nm":
+                    System.out.println(testVal + " to " + modeTitles[count] +
+                            " value = " + arr[count]);
+                    count++;
+
+                    if(count == arr.length) {
+                        count = 0;
+                    }
+                    break;
+                case "cm":
+                    System.out.println("choosing display mode...");
+                    activeDisplayMode = false;
+                    break;
+                case "q" :
+                    System.out.println(powerOffPrompt);
+                    exit(5);
+                default:
+                    throw new IllegalStateException("Unexpected value: " + input);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+/*
     public String cycleDisplayMenu(int num) {
         DecimalFormat df = new DecimalFormat("0.00");
         String binary = (Integer.toBinaryString(num));
@@ -115,7 +146,7 @@ public class ScientificFts {
         while (displayModeActive) {
             String input = userInput();
             switch (input) {
-                case "dm":
+                case "nm":
 //                    print statement can be improved
                     System.out.println(num + " = " + modeTitlesArr[index] + ": " + arr[index]);
                     index++;
@@ -125,13 +156,13 @@ public class ScientificFts {
                     }
                     break;
                 case "cm":
-                    chooseDisplayMode(userInput(), 33);
-//                    chooseDisplayModePrompt(String.valueOf(), 33);
+                    System.out.println("Choosing display mode...");
                     break;
                 case "q":
                     System.out.println("Calculator powering off...");
                     displayModeActive = false;
                     exit(5);
+*/
 /*
                 case "binary":
                     System.out.println("Binary value displaying");
@@ -149,14 +180,17 @@ public class ScientificFts {
                     System.out.println("Hexadecimal value displaying");
                     res.equals(hexadecimal);
                     break;
-*/
+*//*
+
                 default:
                     throw new IllegalStateException("Unexpected value: " + input);
             }
         }
         return res;
     }
+*/
 
+/*
     public String chooseDisplayMode(String mode, int num) {
         boolean choosingDisplayMode = true;
         DecimalFormat df = new DecimalFormat("0.00");
@@ -167,7 +201,13 @@ public class ScientificFts {
         String octal = (Integer.toOctalString(num));
         String decimal = (df.format(num));
         String hexadecimal = (Integer.toHexString(num));
+    }
+*/
 
+
+
+        //display mode methods
+/*
         while (choosingDisplayMode) {
             switch (mode) {
                 case "binary":
@@ -194,6 +234,7 @@ public class ScientificFts {
         return mode;
     }
 }
+*/
 /*
     void switchDisplayMode(int num) {
         DecimalFormat df = new DecimalFormat("0.00");
