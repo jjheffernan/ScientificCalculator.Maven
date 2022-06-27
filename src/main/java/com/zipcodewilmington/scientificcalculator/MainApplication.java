@@ -13,6 +13,9 @@ public class MainApplication {
         Console.println("The user input %s as a string", s);
         Console.println("The user input %s as a integer", i);
         Console.println("The user input %s as a d", d);
+
+
+
     }
 
     public void displayMenu() {
@@ -22,10 +25,15 @@ public class MainApplication {
         String switchDisplay = "d: cycle display modes(binary, octal, decimal, hexadecimal)\n";
         String storeValMemory = "m: store up to one numeric value in memory for recall later\n";
         String trigFunctionality = "t: execute trigonometry functions\n";
+        String addition = "+: begin addition calculation\n";
+        String subtraction = "-: begin subtraction calculation\n";
+        String multiplication = "*: begin multiplication calculation\n";
         String quit = "q: quit";
 
         String menu = (header.toUpperCase() + separator +
-                switchDisplay + storeValMemory + trigFunctionality + quit);
+                switchDisplay + storeValMemory + trigFunctionality +
+                addition + subtraction + multiplication +
+                quit);
         System.out.println(menu);
     }
 
