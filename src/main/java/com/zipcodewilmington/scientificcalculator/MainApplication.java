@@ -79,11 +79,12 @@ public class MainApplication {
                     System.out.println("You entered " + t + "\n");
 
                     break;
-                // case three:
+                // case three: goes to arthimetic case in Calculator.java
                 case "a":
-                    // System.out.println(addPrompt);
-                    // double addX =userInput.getDoubleInput("enter a number to add: ");
-                    // double addY =userInput.getDoubleInput("another one: ");
+                    System.out.println("Welcome to the arithmetic suite \n");
+                    varSpace.userChoice = userInput.getStringInput("Choose an operator \n + \t - \t * \t / \t square \t sqrt \t 1/x \t +/1 \t x^y \n");
+                    varSpace.num1 =userInput.getDoubleInput("enter first number: ");
+                    varSpace.num2 =userInput.getDoubleInput("second number: ");
                     // System.out.println(coreCalc.add(addX, addY));
                     coreCalc.Arithmetic();
                     break;

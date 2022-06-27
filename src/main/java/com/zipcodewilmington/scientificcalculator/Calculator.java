@@ -6,53 +6,61 @@ package com.zipcodewilmington.scientificcalculator;
 import java.lang.Math;
 
 public class Calculator {
-    Double result;
-    String ans;
-    String choiceString = MainApplication.varSpace.userChoice;
-    // MainApplication activeCalc = new MainApplication();
 
-    // Input section
-    double x = MainApplication.varSpace.num1;
-    double y  = MainApplication.varSpace.num1;
     public void Arithmetic() {
+        double result;
+        String ans;
+        String choiceString = MainApplication.varSpace.userChoice;
+        //String choiceString = "/";
+        // MainApplication activeCalc = new MainApplication();
+
+        // Input section
+        double x = MainApplication.varSpace.num1;
+        double y  = MainApplication.varSpace.num2;
 
         switch (choiceString) {
             // Case 1
             case "+" -> {
                 // Print statement corresponding case
-
+                //x = x;
+                y = y;
                 // break keyword terminates the
                 result = add(x, y);
-                System.out.printf("adding %.4f and %.4f \n",x,y);
+                System.out.printf("adding %.4f and %.4f gives %.4f\n",x,y, result);
             }
             // Case 2
             case "-" -> {
                 // Print statement corresponding case
                 result = subtract(x, y);
-                System.out.printf("subtracting %.4f from %.4f gives ",y,x,result);
+                System.out.printf("subtracting %.4f from %.4f gives %.4f\n",y,x,result);
             }
 
             // Case 3
             case "*" -> {
                 // Print statement corresponding case
                 result = multiply(x, y);
-                System.out.printf("multiplying %.4f by %.4f gives ",x,y,result);
+                System.out.printf("multiplying %.4f by %.4f gives %.4f\n",x,y,result);
             }
             // Case 4
             case "/" -> {
                 // Print statement corresponding case
                 result = divide(x,y);
-                System.out.printf("dividing %.4f by %.4f gives %.4f ",x,y,result);
+                System.out.printf("dividing %.4f by %.4f gives %.4f \n",x,y,result);
             }
             case "square" -> {
                 // Print statement corresponding case
                 result = sqr(x);
-                System.out.printf("the square of %.4f is %.4f ",x,result);
+                System.out.printf("the square of %.4f is %.4f \n",x,result);
             }
             case "sqrt" -> {
                 // Print statement corresponding case
-                result = root(x);
-                System.out.printf("the square root of %.4f is %.4f ",x,result);
+                if (x > 0) {
+                    result = root(java.lang.Math.abs(x));
+                    System.out.printf("the square root of %.4f is %.4f \n",x,result);
+                } else {
+                    System.out.printf("ERROR");
+                }
+
             }
             case "1/x" -> {
                 // Print statement corresponding case
@@ -73,7 +81,7 @@ public class Calculator {
                 // Print statement corresponding case
                 System.out.println("Err, no match");
         }
-        ans = String.format(String.valueOf(result));
+        // ans = String.format(String.valueOf(result));
 
     }
 
